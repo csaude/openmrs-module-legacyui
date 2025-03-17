@@ -445,7 +445,7 @@ function toggleUnvoidedOrderErrorMessage(){
 <b class="boxHeader"><openmrs:message code="Select a Preferred Patient" /></b>
 <div class="box" style="max-height:160px; overflow:auto">
 <table class="box" cellspacing="2" cellpadding="2">
-<tr><th></th><th><openmrs:message code="Patient.id"/></th><th><openmrs:message code="Patient.identifiers"/></th><th><openmrs:message code="PersonName.givenName"/></th><th><openmrs:message code="PersonName.middleName"/></th><th><openmrs:message code="PersonName.familyName"/></th><th><openmrs:message code="Person.age"/></th><th><openmrs:message code="Person.gender"/></th><th><openmrs:message code="Person.birthdate"/></th></tr>
+<tr><th></th><th><openmrs:message code="Patient.id"/></th><th><openmrs:message code="Patient.identifiers"/></th><th><openmrs:message code="PersonName.givenName"/></th><th><openmrs:message code="PersonName.middleName"/></th><th><openmrs:message code="PersonName.familyName"/></th><th><openmrs:message code="Person.age"/></th><th><openmrs:message code="legacyui.sesp.gender"/></th><th><openmrs:message code="Person.birthdate"/></th></tr>
 <c:forEach items="${patientList}" var="patient" varStatus="status">
 <tr id="${status.index}tr" class="<c:choose>
 				<c:when test="${status.index % 2 == 0}">evenRow</c:when>
@@ -614,7 +614,7 @@ function toggleUnvoidedOrderErrorMessage(){
 			<td id="info10"><c:out value="${patient.patientId}" /></td>
 		</tr>
 		<tr>
-			<th align="left"><openmrs:message code="Person.gender"/></th>
+			<th align="left"><openmrs:message code="legacyui.sesp.gender"/></th>
 			<td id="info11">
 				<c:choose>
 					<c:when test="${patient.gender == 'M'}">
@@ -677,7 +677,7 @@ function toggleUnvoidedOrderErrorMessage(){
 			<td id="info20"><c:out value="${patient.patientId}" /></td>
 		</tr>
 		<tr>
-			<th align="left"><openmrs:message code="Person.gender"/></th>
+			<th align="left"><openmrs:message code="legacyui.sesp.gender"/></th>
 			<td id="info21">
 				<c:choose>
 					<c:when test="${patient.gender == 'M'}">
@@ -781,7 +781,7 @@ function toggleUnvoidedOrderErrorMessage(){
 		<input type="hidden" id="pref" name="preferred" value=""/>
 		<input type="hidden" id="nonPref" name="nonPreferred" value=""/>
 		<input type="hidden" name="modalMode" value='${modalMode}' />
-		<input type="hidden" name="redirectURL" value='<request:header name="referer" />' />
+		<input type="hidden" name="redirectURL" value='<c:out value="${pageContext.request.getHeader('referer')}"/>' />
 	</c:if>
 </form>
 

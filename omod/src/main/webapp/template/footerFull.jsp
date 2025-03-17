@@ -26,7 +26,11 @@
 						s = "";
 						
 					pageContext.setAttribute("qs", qs.substring(0, i) + s);
+					
+					org.openmrs.api.context.Context.addProxyPrivilege(org.openmrs.util.PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 					pageContext.setAttribute("locales", org.openmrs.api.context.Context.getAdministrationService().getPresentationLocales());
+					org.openmrs.api.context.Context.removeProxyPrivilege(org.openmrs.util.PrivilegeConstants.GET_GLOBAL_PROPERTIES);
+					
 					pageContext.setAttribute("openmrsPlatformVersion", org.openmrs.util.OpenmrsConstants.OPENMRS_VERSION);
 					pageContext.setAttribute("locale", org.openmrs.api.context.Context.getLocale());
 				%>
@@ -48,6 +52,9 @@
 
 			<c:if test="${not empty extraData}">
 				<span id="extraData">${extraData}</span>
+			</c:if>
+			<c:if test="${not empty sespVersion}">
+				<span id="sespVersion"><openmrs:message code="legacyui.sesp.version"/>: ${sespVersion}</span>
 			</c:if>
 
 			<span id="poweredBy"><a href="http://openmrs.org"><openmrs:message code="footer.poweredBy"/> <img border="0" align="top" src="<%= request.getContextPath() %>/moduleResources/legacyui/images/openmrs_logo_tiny.png"/></a></span>
